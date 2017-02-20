@@ -239,7 +239,7 @@ public class MetaBot {
 		
 		// Compile code
 		try {
-			execute("javac -cp " + JARS + " " + PATH + "\\" + botName + ".java");
+			execute("\"C:\\Program Files\\Java\\jdk1.8.0_25\\bin\\javac\" -cp " + JARS + " " + PATH + "\\" + botName + ".java");
 		}catch(Exception e){
 			e.printStackTrace();
 		}

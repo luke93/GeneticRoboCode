@@ -18,7 +18,7 @@ public class RunGP {
 		//"sample.SuperCrazy",
 		//"sample.SuperTracker"
 		//"sample.SuperTrackFire",
-		"sample.SuperRamFire",
+		"sample.RamFire",
 		//"ary.micro.Weak 1.2"
 		//"sheldor.nano.Sabreur_1.1.1"
 		//"sample.Sabreur"
@@ -27,11 +27,11 @@ public class RunGP {
 	};
 	
 	final static String[] rivalsBatch2 = {
-		"sample.SuperRamfire"
+		"sample.RamFire"
 	};
 	
 	final static int 
-		POP_SIZE = 300,
+		POP_SIZE = 6,
 		MAX_GENS = 400,
 		MIN_DEPTH = 2,
 		MAX_DEPTH = 7,
@@ -58,7 +58,7 @@ public class RunGP {
 	static MetaBot 
 		pool[] = new MetaBot[POP_SIZE],
 		newPool[] = new MetaBot[POP_SIZE],
-		candidates[] = new MetaBot[MAX_GENS],	// should probably store as String[] of file paths
+		candidates[] = new MetaBot[],	// should probably store as String[] of file paths
 		bestSoFar;
 	
 	static String botNames[] = new String[POP_SIZE];
@@ -75,7 +75,9 @@ public class RunGP {
 		
 		System.out.println("Initializing population");
 		initPool();
+		System.out.println("Initialized");
 		compilePool();
+		System.out.println("Compiled");
 		
 	
 		// -- EC loop 
@@ -148,11 +150,15 @@ public class RunGP {
 		}
 	}
 
+	
 	private static void compilePool(){
+		int x = 1;
 		System.out.println("Compiling population");
 		for(MetaBot bot : pool){
 			bot.construct();
 			bot.compile();
+			System.out.println(x);
+			x++;
 		}
 	}
 	

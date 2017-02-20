@@ -19,7 +19,7 @@ public class BattleRunner {
 	}
 	
 	public double[] runBatchWithSamples(String bots[], String samples[], int rounds){
-		engine = new RobocodeEngine(new java.io.File("C:/Robocode"));
+		//engine = new RobocodeEngine(new java.io.File("C:/Robocode"));
 		double fitnesses[] = new double[bots.length];
 		String bot, opponent;
 		BattleResults[] results;
@@ -34,6 +34,8 @@ public class BattleRunner {
 				RobotSpecification[] selectedBots = engine.getLocalRepository(bot+", "+opponent);
 				BattleSpecification battleSpec = new BattleSpecification(rounds, battlefield, selectedBots);
 				engine.runBattle(battleSpec, true);
+
+				System.out.println("Battle running");
 				
 				results = battleObserver.getResults();
 				int myBot = (results[0].getTeamLeaderName().equals(bots[i]) ? 0 : 1);
@@ -65,10 +67,13 @@ class BattleObserver extends BattleAdaptor {
 	
 	robocode.BattleResults[] results;
 	
+	@Override
 	public void onBattleCompleted(BattleCompletedEvent e){
+		System.out.println("YEEEEEEEEEE");
 		results = e.getIndexedResults();
 	}
 	
+	@Override
 	public void onBattleError(BattleErrorEvent e){
 		System.out.println("Error running battle: " + e.getError());
 	}
